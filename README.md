@@ -1,1 +1,1 @@
-# satpromax
+# satpromax-api
