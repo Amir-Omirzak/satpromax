@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: satpromax
+      POSTGRES_PASSWORD: satpromax
+      POSTGRES_DB: satpromax
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U satpromax"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://satpromax:satpromax@db:5432/satpromax
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env (see .env.example)}
+      JWT_EXPIRES_IN: 7d
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:

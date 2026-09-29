@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+.admin-password.local
+.pg-test
+.git
+*.log
+.DS_Store

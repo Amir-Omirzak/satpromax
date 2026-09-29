@@ -1,0 +1,48 @@
+{
+  "name": "satpromax-api",
+  "version": "0.1.0",
+  "description": "Backend API for the SAT PRO MAX learning platform: courses, lessons, student progress, mock tests and curator Q&A.",
+  "private": true,
+  "type": "module",
+  "main": "dist/server.js",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --import tsx --watch src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "migrate": "node --env-file-if-exists=.env --import tsx src/cli/migrate.ts",
+    "seed": "node --env-file-if-exists=.env --import tsx src/cli/seed.ts",
+    "test": "vitest run"
+  },
+  "author": "Amir Zhanuzakuly",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.19.0",
+    "@types/pg": "^8.23.1",
+    "@types/supertest": "^7.2.1",
+    "embedded-postgres": "^18.4.0-beta.17",
+    "supertest": "^7.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "@embedded-postgres/darwin-arm64@18.4.0-beta.17": true
+  }
+}
